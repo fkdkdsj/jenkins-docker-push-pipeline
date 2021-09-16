@@ -9,12 +9,6 @@ pipeline {
         }
         stage('Build and push') {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerPassword', usernameVariable: 'dockerUsername')]) {
-                sh '''
-                docker login -u ${dockerUsername} -p ${dockerPassword}
-                docker build -t ${JOB_NAME##*/}:${BUILD_NUMBER} .
-                docker image tag ${JOB_NAME##*/}:${BUILD_NUMBER} ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}
-                docker push ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}
-                '''
             }
         }
     }
