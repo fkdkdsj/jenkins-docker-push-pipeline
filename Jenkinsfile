@@ -14,8 +14,8 @@ pipeline {
                     docker.withRegistry("","dockerHub") {
                         dockerImage.push()
                     }
-                    docker rmi "ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}"
                 }
+                sh 'docker rmi "ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}"'
             }
         }
     }
