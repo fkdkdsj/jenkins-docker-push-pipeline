@@ -9,9 +9,9 @@ pipeline {
         }
         stage('Build and push') {
             steps {
-                container('ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}') {
-                  // some block
-                }
+              sh 'docker build -t ${JOB_NAME##*/}:${BUILD_NUMBER} .'
+              sh 'docker image tag ${JOB_NAME##*/}:${BUILD_NUMBER} ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}'
+              sh 'docker push ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}'
             }
         }
     }
