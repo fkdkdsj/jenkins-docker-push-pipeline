@@ -10,7 +10,7 @@ pipeline {
         stage('Build and push') {
             steps {
               script {
-                dockerImage = docker.build ldmoko/"${JOB_BASE_NAME}:${BUILD_NUMBER}"
+                dockerImage = docker.build ldmoko/${JOB_BASE_NAME}:${BUILD_NUMBER}
                 docker.withRegistry("","dockerHub") {
                   dockerImage.push()
                 }
