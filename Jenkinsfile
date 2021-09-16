@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('git clone') {
             steps {
-                git 'https://github.com/fkdkdsj/jenkins-docker-push-pipeline.git'
+                git branch: 'main', url: 'https://github.com/fkdkdsj/jenkins-docker-push-pipeline'
             }
         }
         stage('Build and push') {
